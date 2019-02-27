@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'adineuePRO-Regular';
+  src: url('./fonts/adineuePRO-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'adineuePRO-Bold';
+  src: url('./fonts/adineuePRO-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'AdihausDIN-Regular';
+  src: url('./fonts/AdihausDIN-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'AdihausDIN-Bold';
+  src: url('./fonts/AdihausDIN-Bold.woff2') format('woff2');
+}
+
+.filterButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.relevant {
+  font-family: 'AdihausDIN-Bold';
+  border-style: solid;
+  border-color: #d9dcdd;
+  color: #767677;
+  border-width: 0.1px;
+  width: 33%;
+  text-align: center;
+  padding: 16px 10px;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.helpful {
+  font-family: 'AdihausDIN-Bold';
+  border-style: solid;
+  border-color: #d9dcdd;
+  border-right: none;
+  border-left: none;
+  color: #767677;
+  border-width: 0.1px;
+  width: 33%;
+  text-align: center;
+  padding: 16px 10px;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.newest {
+  font-family: 'AdihausDIN-Bold';
+  border-style: solid;
+  border-color: #d9dcdd;
+  color: #767677;
+  border-width: 0.1px;
+  width: 33%;
+  text-align: center;
+  padding: 16px 10px;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.relevant:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.helpful:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.newest:hover {
+  cursor: pointer;
+  color: black;
+}
