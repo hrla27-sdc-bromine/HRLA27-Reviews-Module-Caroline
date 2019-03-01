@@ -1,6 +1,7 @@
 const db = require('./model.js');
 const faker = require('faker');
-
+const fs = require('fs');
+const path = require('path');
 const {
   descriptionGenerator,
   headerGenerator,
@@ -30,11 +31,78 @@ generateReviews = n => {
       yes: helpfulCountGen(),
       nope: helpfulCountGen()
     };
-    reviews.push(review);
+    // reviews.push(review);
+    return review; 
   }
 };
 
-generateReviews(500);
 
-const insertData = () => db.insertMany(reviews);
-insertData();
+// const writeToTxt= function () {
+  // for (var i = 0; i < 10; i++) {
+  //   const file = fs.createWriteStream(`sample${i}.txt`);
+  //   var testing = JSON.stringify(generateReviews(1));
+  //   file.write(testing);
+  //   console.log(testing);
+  // }
+for (var i = 0; i < 1; i++) {
+  function writeOneMillionTimes(data, callback) {
+    const file = fs.createWriteStream(`samples${i}.txt`);
+    var x = 1e7;
+    write();
+
+    function write() {
+      var ok = true;
+      do {
+        x -=1;
+        if (x === 0) {
+          file.write(data, ()=>console.log('done'));
+        } else {
+          var data = JSON.stringify(generateReviews(1));
+          ok = file.write(data);
+        }
+      } while (x > 0 && ok);
+      if (x > 0) {
+        file.once('drain', write);
+      }
+    }
+  }
+}
+
+writeOneMillionTimes();
+
+
+// const readFromTxt = function (review_id) {
+//   return new Promise((resolve, reject) => {
+//     const src = fs.createReadStream(`samples${review_id}.txt`)
+//     let doc = '';
+//     src.on('data', (chunk) => {
+//       doc += chunk
+//     })
+//     src.on('end', () => {
+//       let recordsArray = doc.split('\n') //
+//       recordsArray.pop(); // eliminates the newline on the very last reccord
+//       recordsArray = recordsArray.map((rec) => {
+//         return JSON.parse(rec)
+//       });
+//       resolve(recordsArray)
+//     })
+//   })
+// }
+// readFromTxt();
+//   file.end();
+// }
+// writeToTxt();
+
+// const insertData = () => db.insertMany(reviews);//
+
+
+// const seed = async ()=>{
+//   for(let i=0; i < 1000; i++){
+//     generateReviews(10000);
+//     await insertData();
+//     console.log(i);
+//   }
+//   console.log('completed');
+// }
+// seed();
+module.exports
