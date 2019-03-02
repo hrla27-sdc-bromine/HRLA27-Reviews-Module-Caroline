@@ -5,19 +5,18 @@ const path = require('path');
 const {
   descriptionGenerator,
   headerGenerator,
-  idGenerator,
+  // idGenerator,
   fiveStarGenerator,
   dateGenerator,
   recommendGen,
   helpfulCountGen
 } = require('./generator.js');
 
-let reviews = [];
-
-generateReviews = n => {
-  for (let i = 0; i < n; i++) {
+generateReviews = () => {
+  let reviews = [];
+  let loopLength = Math.ceil(Math.random() * 10)
+  for (let i = 0; i < loopLength; i++) {
     let review = {
-      review_id: idGenerator(20),
       user: faker.internet.userName(),
       header: headerGenerator(),
       description: descriptionGenerator(),
@@ -31,9 +30,9 @@ generateReviews = n => {
       yes: helpfulCountGen(),
       nope: helpfulCountGen()
     };
-    // reviews.push(review);
-    return review; 
+    reviews.push(review);
   }
+  return reviews; 
 };
 
 
@@ -46,18 +45,21 @@ generateReviews = n => {
   // }
 for (var i = 0; i < 1; i++) {
   function writeOneMillionTimes(data, callback) {
+    
     const file = fs.createWriteStream(`samples${i}.txt`);
     var x = 1e7;
+    var j = 0;
     write();
 
     function write() {
       var ok = true;
       do {
         x -=1;
+        j++;
+        var data = JSON.stringify({product_id:j, review:generateReviews()});
         if (x === 0) {
-          file.write(data, ()=>console.log('done'));
+          file.write(data, ()=> console.log('done'));
         } else {
-          var data = JSON.stringify(generateReviews(1));
           ok = file.write(data);
         }
       } while (x > 0 && ok);
@@ -104,5 +106,5 @@ writeOneMillionTimes();
 //   }
 //   console.log('completed');
 // }
-// seed();
-module.exports
+// // seed();
+// module.exports

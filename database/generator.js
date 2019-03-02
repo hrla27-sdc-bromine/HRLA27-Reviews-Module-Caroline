@@ -22,9 +22,9 @@ let headerGenerator = () => {
   });
 };
 
-let idGenerator = number => {
-  return Math.floor(Math.random() * Math.floor(number) + 1);
-};
+// let idGenerator = number => {
+//   return Math.floor(Math.random() * Math.floor(number) + 1);
+// };
 
 let fiveStarGenerator = () => {
   return Math.floor(Math.random() * Math.floor(5) + 1);
@@ -49,7 +49,7 @@ let helpfulCountGen = () => {
 module.exports = {
   descriptionGenerator,
   headerGenerator,
-  idGenerator,
+  // idGenerator,
   fiveStarGenerator,
   dateGenerator,
   recommendGen,
