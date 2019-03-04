@@ -6,7 +6,8 @@ const cors = require('cors');
 const port = 3005;
 const app = express();
 
-const Reviews = require('../database/model.js');
+const Product = require('../database-sql/model.js');
+const Reviews = require('../database-sql/model.js');
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
