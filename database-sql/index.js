@@ -1,6 +1,6 @@
 const pg = require('pg');
 const Sequelize = require('sequelize');
-const connection = new Sequelize('productreview', '', '', {
+const connection = new Sequelize('productreviews', '', '', {
   host: 'localhost',
   dialect: 'postgres',
   operatorAliases: false,

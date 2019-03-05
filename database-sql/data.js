@@ -20,7 +20,7 @@ generateReviews = (id) => {
 
   for (let i = 0; i < loopLength; i++) {
     productId= id;
-    user= faker.internet.userName(),
+    username= faker.internet.userName(),
     header= faker.random.words(),
     text= faker.random.words(),
     date= dateGenerator(),
@@ -32,7 +32,7 @@ generateReviews = (id) => {
     recommended= recommendGen(),
     yes= helpfulCountGen(),
     no= helpfulCountGen()
-    review += `${productId},${user},${header},${text},${date},${starRating},${size},${width},${comfort},${quality},${recommended},${yes},${no} \n`;
+    review += `${productId},${username},${header},${text},${date},${starRating},${size},${width},${comfort},${quality},${recommended},${yes},${no} \n`;
   }
   return review;
 };
@@ -56,7 +56,7 @@ const reviewFile = fs.createWriteStream('reviews.csv');
     function write() {
       var ok = true;
       do {
-        x -= 1;
+        x--;
         j++;
         var data = 
           productName = generatorProducts();

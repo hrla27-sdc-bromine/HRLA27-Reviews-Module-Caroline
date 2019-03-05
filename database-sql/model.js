@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const connection = require('./index.js');
 
 const Product = connection.define(
-'Products',
+'products',
 {
   productId:{
     type: Sequelize.INTEGER,
@@ -13,11 +13,14 @@ const Product = connection.define(
   },
   productName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   }
-})
+},
+  {timestamps:false}
+  
+);
 const Reviews = connection.define(
-'Reviews',
+'reviews',
 {
   reviewsId:{
   type: Sequelize.INTEGER, 
@@ -26,9 +29,9 @@ const Reviews = connection.define(
   },
   productId: {
     type: Sequelize.INTEGER(),
-    referencesKey: 'ProductId'
+    referencesKey: 'productId'
   },
-  user:{
+  username:{
     type: Sequelize.STRING(64)
   },
   header:{
