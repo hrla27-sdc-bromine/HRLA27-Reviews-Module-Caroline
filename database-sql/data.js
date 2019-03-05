@@ -2,6 +2,7 @@ const db = require('./model.js');
 const faker = require('faker');
 const fs = require('fs');
 const path = require('path');
+const CSV = require('csv-string');
 const {
   fiveStarGenerator,
   dateGenerator,
@@ -15,29 +16,28 @@ generatorProducts = () => {
 }
 
 generateReviews = (id) => {
-  let review='';
+  let review=[];
   let loopLength = Math.ceil(Math.random() * 10);
 
   for (let i = 0; i < loopLength; i++) {
-    productId= id;
-    username= faker.internet.userName(),
-    header= faker.random.words(),
-    text= faker.random.words(),
-    date= dateGenerator(),
-    starRating= fiveStarGenerator(),
-    size= fiveStarGenerator(),
-    width= fiveStarGenerator(),
-    comfort= fiveStarGenerator(),
-    quality= fiveStarGenerator(),
-    recommended= recommendGen(),
-    yes= helpfulCountGen(),
-    no= helpfulCountGen()
-    review += `${productId},${username},${header},${text},${date},${starRating},${size},${width},${comfort},${quality},${recommended},${yes},${no} \n`;
+    temp = []
+    temp.push(id);
+    temp.push(faker.internet.userName());
+    temp.push(faker.random.word());
+    temp.push(faker.random.word());
+    temp.push(dateGenerator());
+    temp.push(fiveStarGenerator());
+    temp.push(fiveStarGenerator());
+    temp.push(fiveStarGenerator());
+    temp.push(fiveStarGenerator());
+    temp.push(fiveStarGenerator());
+    temp.push(recommendGen());
+    temp.push(helpfulCountGen());
+    temp.push(helpfulCountGen());
+    review.push(temp);
   }
-  return review;
+  return CSV.stringify(review);
 };
-
-
 // const writeToTxt= function () {
 // for (var i = 0; i < 10; i++) {
 //   const file = fs.createWriteStream(`sample${i}.txt`);
@@ -45,7 +45,7 @@ generateReviews = (id) => {
 //   file.write(testing);
 //   console.log(testing);
 // }
-const productFile = fs.createWriteStream('products.csv');
+// const productFile = fs.createWriteStream('productstesting.csv');
 const reviewFile = fs.createWriteStream('reviews.csv');
 
   function writeOneMillionTimes(data, callback) {
@@ -58,26 +58,68 @@ const reviewFile = fs.createWriteStream('reviews.csv');
       do {
         x--;
         j++;
-        var data = 
-          productName = generatorProducts();
+        // var data = 
+        //   productName = generatorProducts();
         var data2 = 
           review = generateReviews(j);
         if (x === 0) {
-          productFile.write(data, () => console.log('done'));
+          // productFile.write(data, () => console.log('done'));
           reviewFile.write(data2, ()=> console.log('done'));
         } else {
-          ok = productFile.write(data);
+          // ok = productFile.write(data);
           ok = reviewFile.write(data2);
         }
       } while (x > 0 && ok);
       if (x > 0) {
-        productFile.once('drain', write);
+        // productFile.once('drain', write);
         reviewFile.once('drain',write);
       }
     }
   }
 
 writeOneMillionTimes();
+
+
+// const writeToTxt= function () {
+// for (var i = 0; i < 10; i++) {
+//   const file = fs.createWriteStream(`sample${i}.txt`);
+//   var testing = JSON.stringify(generateReviews(1));
+//   file.write(testing);
+//   console.log(testing);
+// }
+// const productFile = fs.createWriteStream('products.csv');
+// const reviewFile = fs.createWriteStream('reviews.csv');
+
+//   function writeOneMillionTimes(data, callback) {
+//     var x = 1e7;
+//     var j = 0;
+//     write();
+
+//     function write() {
+//       var ok = true;
+//       do {
+//         x--;
+//         j++;
+//         var data = 
+//           productName = generatorProducts();
+//         var data2 = 
+//           review = generateReviews(j);
+//         if (x === 0) {
+//           productFile.write(data, () => console.log('done'));
+//           reviewFile.write(data2, ()=> console.log('done'));
+//         } else {
+//           ok = productFile.write(data);
+//           ok = reviewFile.write(data2);
+//         }
+//       } while (x > 0 && ok);
+//       if (x > 0) {
+//         productFile.once('drain', write);
+//         reviewFile.once('drain',write);
+//       }
+//     }
+//   }
+
+// writeOneMillionTimes();
 
 
 // const readFromTxt = function (review_id) {

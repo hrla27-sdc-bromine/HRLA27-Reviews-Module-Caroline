@@ -22,59 +22,59 @@ const Product = connection.define(
 const Reviews = connection.define(
 'reviews',
 {
-  reviewsId:{
-  type: Sequelize.INTEGER, 
-  autoIncrement: true,
-  primaryKey: true
-  },
+  
   productId: {
-    type: Sequelize.INTEGER(),
+    type: Sequelize.INTEGER,
     referencesKey: 'productId'
   },
   username:{
-    type: Sequelize.STRING(64)
+    type: Sequelize.TEXT
   },
   header:{
-    type: Sequelize.STRING(64)
+    type: Sequelize.TEXT
   },
   text:{
-    type: Sequelize.STRING(150)
+    type: Sequelize.TEXT
   },
   date:{
-    type:Sequelize.STRING(30)
+    type:Sequelize.TEXT
   },
   starRating:{
-    type: Sequelize.STRING(30)
+    type: Sequelize.TEXT
   },
   size:{
-    type: Sequelize.INTEGER()
+    type: Sequelize.INTEGER
   },
   width: {
-    type: Sequelize.INTEGER()
+    type: Sequelize.INTEGER
   },
   comfort: {
-    type: Sequelize.INTEGER()
+    type: Sequelize.INTEGER
   },
   quality: {
-    type: Sequelize.INTEGER()
+    type: Sequelize.INTEGER
   },
   recommended: {
     type: Sequelize.BOOLEAN()
   },
   yes: {
-    type: Sequelize.INTEGER()
+    type: Sequelize.INTEGER
   },
   no: {
-    type: Sequelize.INTEGER()
-  }
-})
+    type: Sequelize.INTEGER
+  },
+}, {
+  timestamps: false
+}
 
-Product.hasMany(Reviews, {
-  foreignKey: 'reviewId'
-});
-Reviews.belongsTo(Product, {
-  foreignKey: 'reviewsId'
-}); //adds id to product
+);
+
+// Product.hasMany(Reviews, {
+//   foreignKey: 'reviewsId'
+// });
+// Reviews.belongsTo(Product, {
+//   foreignKey: 'reviewsId'
+// }); //adds id to product
 
 connection.sync({force:false});
 
