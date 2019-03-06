@@ -24,7 +24,7 @@ class ReviewApp extends Component {
   }
 
   componentDidMount() {
-    this.onStartUp(Math.floor(Math.random() * 20) + 1);
+    this.onStartUp(Math.floor(Math.random() * 1e7));
   }
 
   onStartUp(id) {

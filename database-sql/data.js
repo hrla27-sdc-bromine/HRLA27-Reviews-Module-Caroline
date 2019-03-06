@@ -46,38 +46,38 @@ generateReviews = (id) => {
 //   console.log(testing);
 // }
 // const productFile = fs.createWriteStream('productstesting.csv');
-const reviewFile = fs.createWriteStream('reviews.csv');
+// const reviewFile = fs.createWriteStream('reviews.csv');
 
-  function writeOneMillionTimes(data, callback) {
-    var x = 1e7;
-    var j = 0;
-    write();
+//   function writeOneMillionTimes(data, callback) {
+//     var x = 1e7;
+//     var j = 0;
+//     write();
 
-    function write() {
-      var ok = true;
-      do {
-        x--;
-        j++;
-        // var data = 
-        //   productName = generatorProducts();
-        var data2 = 
-          review = generateReviews(j);
-        if (x === 0) {
-          // productFile.write(data, () => console.log('done'));
-          reviewFile.write(data2, ()=> console.log('done'));
-        } else {
-          // ok = productFile.write(data);
-          ok = reviewFile.write(data2);
-        }
-      } while (x > 0 && ok);
-      if (x > 0) {
-        // productFile.once('drain', write);
-        reviewFile.once('drain',write);
-      }
-    }
-  }
+//     function write() {
+//       var ok = true;
+//       do {
+//         x--;
+//         j++;
+//         // var data = 
+//         //   productName = generatorProducts();
+//         var data2 = 
+//           review = generateReviews(j);
+//         if (x === 0) {
+//           // productFile.write(data, () => console.log('done'));
+//           reviewFile.write(data2, ()=> console.log('done'));
+//         } else {
+//           // ok = productFile.write(data);
+//           ok = reviewFile.write(data2);
+//         }
+//       } while (x > 0 && ok);
+//       if (x > 0) {
+//         // productFile.once('drain', write);
+//         reviewFile.once('drain',write);
+//       }
+//     }
+//   }
 
-writeOneMillionTimes();
+// writeOneMillionTimes();
 
 
 // const writeToTxt= function () {
