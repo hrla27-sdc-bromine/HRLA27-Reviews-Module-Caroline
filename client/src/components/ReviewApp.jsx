@@ -67,6 +67,7 @@ class ReviewApp extends Component {
   /* FILTER BY STAR RATING */
   filterByStar(array) {
     let { id, reviewsOnDisplay } = this.state;
+    console.log('id from frontend',id);
     axios
       .post(`/reviews/${id}/stars/${reviewsOnDisplay}`, { stars: array })
       .then(({ data }) => this.setState({ reviews: data }))

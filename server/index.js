@@ -60,11 +60,11 @@ app.get('/reviews/:productId/helpful/:n', (req, res) => {
     .catch(error => res.status(404).send(error));
 });
 
-app.get('/reviews/:productId/relevant', (req, res) => {
+app.get('/reviews/:productId/relevant/:n', (req, res) => {
   console.log('in relevant')
-  let { productId } = req.params;
+  let { productId,n } = req.params;
   Reviews.findAll({
-    // limit: (JSON.parse(n)),
+    limit: (JSON.parse(n)),
     where: {
       "productId": productId,
       no: { $lt: 20 }
@@ -88,10 +88,8 @@ app.get('/reviews/:productId/newest/:n', (req, res) => {
 
 });
 
-app.get('/reviews/:productId/stars/:n', (req, res) => {
-  let {
-    productId,n
-  } = req.params;
+app.post('/reviews/:productId/stars/:n', (req, res) => {
+  let { productId,n } = req.params;
   let { starRating } = req.body;
   Reviews.findAll({
       limit: (JSON.parse(n)),
@@ -121,7 +119,7 @@ app.get('/reviews/:productId/stars/:n', (req, res) => {
       .then(data => res.status(200).send(data))
       .catch(error => res.status(404).send(error));
   });
-  
+
 // app.get('/reviews/:product_id', (req, res) => {
 //   console.log(req.params);
 //   let { product_id } = req.params;
