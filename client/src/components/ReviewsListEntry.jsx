@@ -23,11 +23,12 @@ let dateConversion = input => {
   let year = date.slice(0, 4);
   let day = date.slice(8, 11).replace(/^0+/, '');
   let month = monthNames[monthNumber];
+  console.log('month',monthNumber);
   return `${month} ${day}, ${year}`;
 };
 
 const ReviewsListEntry = props => {
-  let { rating, date, header, description, user, yes, nope } = props.review;
+  let { starRating, date, header, text, username, yes, no } = props.review;
 
   return (
     <div>
@@ -35,7 +36,7 @@ const ReviewsListEntry = props => {
       <br />
       <div className={styles.feedTop}>
         <StarRatings
-          rating={rating}
+          starRating={starRating}
           starDimension="14px"
           starSpacing="0.1px"
           starRatedColor="black"
@@ -45,10 +46,10 @@ const ReviewsListEntry = props => {
       <br />
       <div className={styles.header}>{header}</div>
       <br />
-      <div className={styles.description}>{description}</div>
+      <div className={styles.description}>{text}</div>
       <br />
       <div className={styles.userContainer}>
-        <div className={styles.user}>{user}</div>
+        <div className={styles.user}>{username}</div>
         <div className={styles.verified}> - Verified Purchaser</div>
       </div>
       <br />
@@ -59,7 +60,7 @@ const ReviewsListEntry = props => {
           <div className={styles.yes}>Yes</div>
           <div className={styles.yesCount}>({yes})</div>
           <div className={styles.no}>No</div>
-          <div className={styles.noCount}>({nope})</div>
+          <div className={styles.noCount}>({no})</div>
         </div>
       </div>
       <br />
