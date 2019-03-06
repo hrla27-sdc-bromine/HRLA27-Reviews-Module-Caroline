@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const parser = require('body-parser');
 const cors = require('cors');
-const sequelize = require('sequelize');
 const port = 3005;
 const app = express();
 
@@ -42,7 +41,6 @@ app.get('/reviews/:productId/stats', (req, res) => {
     .then(data => res.status(200).send(data))
     .catch(error => res.status(404).send(error));
 });
-
 
 app.get('/reviews/:productId/helpful/:n', (req, res) => {
   console.log('in helpful')
@@ -123,6 +121,7 @@ app.get('/reviews/:productId/stars/:n', (req, res) => {
       .then(data => res.status(200).send(data))
       .catch(error => res.status(404).send(error));
   });
+  
 // app.get('/reviews/:product_id', (req, res) => {
 //   console.log(req.params);
 //   let { product_id } = req.params;
