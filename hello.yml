@@ -1,0 +1,9 @@
+config:
+  target: 'http://localhost:3005'
+  phases:
+    - duration: 60
+      arrivalRate: 500 
+scenarios:
+  - flow:
+    - get:
+        url: "/reviews/{{$randomNumber(1,1e7)}}"
