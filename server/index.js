@@ -101,7 +101,7 @@ app.post('/reviews/:productId/stars/:n', (req, res) => {
         ['starRating', 'DESC'],
       ],
     })
-    .then(data => res.status(200).send(data))
+    .then(data => res.status(201).send(data))
     .catch(error => res.status(404).send(error));
     
   })
@@ -120,6 +120,7 @@ app.post('/reviews/:productId/stars/:n', (req, res) => {
       .catch(error => res.status(404).send(error));
   });
 
+module.exports = app;
 // app.get('/reviews/:product_id', (req, res) => {
 //   console.log(req.params);
 //   let { product_id } = req.params;
