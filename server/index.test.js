@@ -1,5 +1,6 @@
 const app = require("./index.js");
 const request = require("supertest");
+const connection = require('../database-sql/index.js');
 
 describe("should be able to accept the get requests from the correct endpoint", () => {
   test("it should be access to the route /reviews/:productId", done => {
@@ -59,3 +60,24 @@ describe("should be able to accept the get requests from the correct endpoint", 
       });
   });
 });
+
+// describe('...', () => {
+//   beforeEach(async () => {
+//     await connection.create();
+//   });
+//   afterAll(async done => {
+//     // Closing the DB connection allows Jest to exit successfully.
+//     connection.close();
+//     done();
+//   });
+// });
+
+
+describe('test with the db connection', () => {
+  beforeAll(() => {
+    connection.create();
+  });
+  afterAll((done) => {
+    connection.close(done);
+  });
+})
