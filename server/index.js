@@ -141,7 +141,39 @@ app.post('/reviews/:productId/stars/:n', (req, res) => {
     })
     .then(data => res.status(201).send(data))
     .catch(error => res.status(404).send(error));
-  })
+  });
+
+  app.delete('/reviews/:id', (req, res) => {
+    console.log('in deleting the product review');
+    let { id } = req.params;
+    Reviews.destroy({
+      where: {
+        id: id
+      }
+    })
+    .then(res.status(203).send())
+    .catch(error => res.status(404).send(error));
+  });
+
+  app.put('/reviews/:id', (req, res) => {
+    console.log('in updating the product review');
+    let { id } = req.params;
+    let { starRating, text } = req.body;
+    Reviews.update({
+      text: text,
+      "starRating": starRating
+    },
+    {
+      where: {
+        id: id
+      }
+    })
+    .then((data) => res.status(202).send(data))
+    .catch(error => res.status(404).send(error));
+  });
+
+ 
+
 module.exports = app;
 // app.get('/reviews/:product_id', (req, res) => {
 //   console.log(req.params);
