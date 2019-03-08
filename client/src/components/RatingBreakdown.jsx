@@ -34,16 +34,17 @@ class RatingBreakdown extends Component {
   }
 
   calculateAverage() {
-    let ratings = this.props.stats.map(review => review.rating);
+    let ratings = this.props.stats.map(review => parseInt(review.starRating));
     let numberOfRatings = ratings.length;
     let sum = _.sum(ratings);
-    let score = Math.round(10 * (sum / numberOfRatings)) / 10;
+    let score = Math.round((sum/numberOfRatings)*100)/100;
+    // let score = Math.round(numberOfRatings * (sum / numberOfRatings)) / numberOfRatings;
     if (isNaN(score)) return 0;
     this.setState({ score });
   }
 
   meter() {
-    let ratings = this.props.stats.map(review => review.rating);
+    let ratings = this.props.stats.map(review => parseInt(review.starRating));
     let five = this.filterReviewScores(5, ratings);
     let four = this.filterReviewScores(4, ratings);
     let three = this.filterReviewScores(3, ratings);
@@ -79,14 +80,14 @@ class RatingBreakdown extends Component {
 
   render() {
     let { filter, array, score, max, five, four, three, two, one } = this.state;
-
+    // console.log('scoress', score);
     return (
       <div>
         <div className={styles.scoreContainer}>
           <div className={styles.score}>{score}</div>
           <div className={styles.subScore}>
             <StarRatings
-              rating={score}
+              starRating={score}
               starDimension="12px"
               starSpacing="0.1px"
               starRatedColor="black"
