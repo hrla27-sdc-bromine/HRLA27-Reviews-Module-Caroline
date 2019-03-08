@@ -18,28 +18,30 @@ let dateConversion = input => {
     'December'
   ];
 
-  let date = input.slice(0, 10);
-  let monthNumber = date.slice(5, 7).replace(/^0+/, '') - 1;
-  let year = date.slice(0, 4);
-  let day = date.slice(8, 11).replace(/^0+/, '');
-  let month = monthNames[monthNumber];
-  console.log('month',monthNumber);
-  return `${month} ${day}, ${year}`;
+  let date = input.slice(4, 15);
+  // console.log(date);
+  // let monthNumber = date.slice(5, 7).replace(/^0+/, '') - 1;
+  // let year = date.slice(0, 4);
+  // let day = date.slice(8, 11).replace(/^0+/, '');
+  // let month = monthNames[monthNumber];
+  // console.log('month',monthNumber);
+  // return `${month} ${day}, ${year}`;
+  return `${date}`;
 };
 
 const ReviewsListEntry = props => {
   let { starRating, date, header, text, username, yes, no } = props.review;
-
+  console.log(starRating);
   return (
     <div>
       <br />
       <br />
       <div className={styles.feedTop}>
         <StarRatings
-          starRating={starRating}
+          starRating={5}
           starDimension="14px"
           starSpacing="0.1px"
-          starRatedColor="black"
+          starRatedColor="red"
         />
         <div className={styles.date}>{dateConversion(date)}</div>
       </div>
