@@ -120,6 +120,28 @@ app.post('/reviews/:productId/stars/:n', (req, res) => {
       .catch(error => res.status(404).send(error));
   });
 
+
+  app.post('/reviews', (req, res) => {
+    console.log('in posting reviews');
+    let { productId, username, header, text, date, starRating, size, width, comfort, quality, recommended, yes, no } = req.body;
+    Reviews.create({
+      "productId": productId,
+      username: username,
+      header: header,
+      text: text,
+      date: date,
+      "starRating": starRating,
+      size: size,
+      width: width,
+      comfort: comfort,
+      quality: quality,
+      recommended: recommended,
+      yes: yes,
+      no: no
+    })
+    .then(data => res.status(201).send(data))
+    .catch(error => res.status(404).send(error));
+  })
 module.exports = app;
 // app.get('/reviews/:product_id', (req, res) => {
 //   console.log(req.params);
