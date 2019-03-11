@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const connection = new Sequelize('productreviews', '', '', {
-  host: 'localhost',
+const connection = new Sequelize('product_review', 'postgres', 'caroline', {
+  host: '18.191.151.159',
   dialect: 'postgres',
   operatorAliases: false,
   pool: {
@@ -11,13 +11,13 @@ const connection = new Sequelize('productreviews', '', '', {
   },
 })
 
-connection
-  .authenticate()
-  .then(() => {
+// connection
+  // .authenticate()
+  // .then(() => {
     
-    console.log('connected')
-  })
-  .catch(err =>{
-    console.log('unable to connect to the postgres database', err);
-  });
+  //   console.log('connected')
+  // })
+  // .catch(err =>{
+  //   console.log('unable to connect to the postgres database', err);
+  // });
   module.exports = connection;
