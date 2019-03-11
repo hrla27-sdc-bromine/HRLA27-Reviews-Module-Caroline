@@ -19,7 +19,7 @@ app.listen(port, () => console.log(`Listening on port ${port}.`));
 //postgreSQL database
 app.get('/reviews/:productId', (req, res) => {
   let { productId } = req.params;
-  console.log(productId);
+  console.log(req.params);
   Reviews.findAll({
       limit: 2,
       where: {
