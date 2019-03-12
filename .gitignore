@@ -65,3 +65,5 @@ reviews.csv
 reviewstesting.csv
 productstesting.csv
 reviewtest.csv
+.dockerignore
+Dockerfile
