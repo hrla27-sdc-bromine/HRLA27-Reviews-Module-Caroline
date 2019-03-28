@@ -4,6 +4,17 @@ const parser = require('body-parser');
 const cors = require('cors');
 const port = 3005;
 const app = express();
+const redis = require('redis');
+
+const client = redis.createClient(6379, '52.15.213.199');
+
+client.on('error', (err) => {
+  console.log('error',err);
+  return err;
+})
+client.on("ready", function () {
+  console.log("Redis is ready");
+});
 
 // const Product = require('../database-sql/model.js');
 const { Reviews } = require('../database-sql/model.js');
@@ -20,14 +31,28 @@ app.listen(port, () => console.log(`Listening on port ${port}.`));
 app.get('/reviews/:productId', (req, res) => {
   let { productId } = req.params;
   console.log(req.params);
-  Reviews.findAll({
-      limit: 2,
-      where: {
-        "productId": productId
-      }
-    })
-    .then(data => res.status(200).send(data))
-    .catch(error => res.status(404).send(error));
+  client.get(productId,(err,result)=> {
+    if (result) {
+      res.send(JSON.parse(result))
+    } else {
+      //  console.log('in else')
+      Reviews.findAll({
+        limit: 2,
+        where: {
+          "productId": productId
+        }
+      })
+      .then(data => {client.setex(productId,60,JSON.stringify(data)); 
+        return res.status(200).send(data)})
+      .catch(error => res.status(404).send(error));
+    }
+  })
+});
+
+app.get('/loaderio-143c16aef5364044c6a3bb00658ec978/', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "/loaderio-143c16aef5364044c6a3bb00658ec978.txt")
+  );
 });
 
 app.get('/reviews/:productId/stats', (req, res) => {

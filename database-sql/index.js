@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+
 const connection = new Sequelize('product_review', 'postgres', 'caroline', {
-  host: '18.222.25.215',
+  host: '3.17.14.161',
   dialect: 'postgres',
   operatorAliases: false,
   pool: {
